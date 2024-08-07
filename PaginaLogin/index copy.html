@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Controle</title>
+    <!--<link rel="stylesheet" href="style.css">-->
+    <!--<script src="script.js"></script>-->
+</head>
+<body>
+
+    <form>
+        <div>
+          <label>Email</label><br/>
+          <input type="email" name="email" id="email" onchange="validateFields()" placeholder="seu@email.com"/>
+          </div>
+        <div>
+          <label>Senha</label><br/>
+          <input type="password" name="password" id="password" onchange="validateFields()" placeholder="Senha"/>
+          </div>
+        <div>
+          <button type="button" class="clear" id="recover-password-button" disabled="true">Recuperar Senha</button>
+        </div>
+        <div>
+          <button type="button" class="solid" id="login-button" disabled="true">Entrar</button>
+        </div>
+        <div>
+          <button type="button" class="outline">Registrar</button>
+        </div>
+      </form>
+    
+</body>
+        <script>
+          function validateFields() {
+            const emailValid = isEmailValid();
+            document.getElementById("recover-password-button").disabled = !emailValid;
+
+            const passwordValid  = isPasswordValid();
+            document.getElementById("login-button").disabled =  !emailValid || !passwordValid;
+          }
+
+          function isEmailValid() {
+            const email = document.getElementById("email").value;
+            if (!email) {
+              return false;
+            }
+            return validateEmail(email);
+          }
+
+          function isPasswordValid() {
+            const password = document.getElementById("password");
+            if (!password) {
+              return false;
+            }
+            return true;
+          }
+
+          function validateEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+          }
+        </script>
+
+        <style>
+          body{
+            background-color: rgb(45, 211, 111);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+          }
+
+          form {
+            width: 300px;
+          }
+
+          input {
+            border: none;
+          }
+
+          input, button {
+            padding: 10px;
+            margin-bottom: 10px;
+            width: -webkit-fill-available;
+          }
+
+          button {
+            cursor: pointer;
+          }
+
+          button:active {
+            opacity: 0.8;
+          }
+
+          button[disabled] {
+            opacity: 0.7;
+          }
+
+          .clear {
+            background: transparent;
+            border: none;
+            color: white;
+          }
+
+          .solid {
+            background: white;
+            border: none;
+            color:rgb(45, 211, 111)
+          }
+
+          .outline {
+            background: transparent;
+            color: white;
+            border: 1px solid white;
+          }
+
+          .error-message{
+            width: -webkit-fill-available;
+            display: flex;
+            justify-content:baseline;
+            
+          }
+
+
+        </style>
+
+
+</html>
